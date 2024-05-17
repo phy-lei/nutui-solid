@@ -1,0 +1,2 @@
+node ./scripts/verifymail.js
+npx lint-staged
