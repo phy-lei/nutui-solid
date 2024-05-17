@@ -154,22 +154,6 @@ NutUI 的共建方向主要分为：解决 issue、修复 bug、新增组件、�
 
 如果您有任何想法、疑问或建议，都可以参与社区讨论分享您的观点。
 
-## 贡献者们
-
-感谢以下所有给 NutUI 贡献过代码的 [开发者](https://github.com/jdf2e/nutui-react/graphs/contributors)。
-
-<a href="https://github.com/jdf2e/nutui-react/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=jdf2e/nutui-react" />
-</a>
-
-## Stargazers 
-
-[![Stargazers repo roster for @jdf2e/nutui-react](https://reporoster.com/stars/jdf2e/nutui-react)](https://github.com/jdf2e/nutui-react/stargazers)
-
-## Forkers
-
-[![Forkers repo roster for @jdf2e/nutui-react](https://reporoster.com/forks/jdf2e/nutui-react)](https://github.com/jdf2e/nutui-react/network/members)
-
 ## 开发计划
 
 [Milestones](https://github.com/jdf2e/nutui-react/projects)

@@ -119,24 +119,6 @@ You are very welcome to contribute code to NutUI. Before your pull requests, ple
 
 If you have any ideas, questions or suggestions, you can share your opinions here.
 
-## Contributors
-
-Thanks to all the following [developers](https://github.com/jdf2e/nutui-react/graphs/contributors)。 who have contributed code to NutUI.
-
-
-<a href="https://github.com/jdf2e/nutui-react/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=jdf2e/nutui-react" alt="contributors"/>
-</a>
-
-
-## Stargazers 
-
-[![Stargazers repo roster for @jdf2e/nutui-react](https://reporoster.com/stars/jdf2e/nutui-react)](https://github.com/jdf2e/nutui-react/stargazers)
-
-## Forkers
-
-[![Forkers repo roster for @jdf2e/nutui-react](https://reporoster.com/forks/jdf2e/nutui-react)](https://github.com/jdf2e/nutui-react/network/members)
-
 ## Milestones
 
 [Milestones](https://github.com/jdf2e/nutui-react/projects)
