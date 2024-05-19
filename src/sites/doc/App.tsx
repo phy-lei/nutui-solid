@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { Router, Route, useLocation } from '@solidjs/router'
 import { MDXProvider } from '@mdx-js/react'
 import './App.scss'
 import { nav } from '@/config.json'
@@ -99,7 +99,6 @@ const App = () => {
 
   return (
     <div>
-      <HashRouter>
         <Header></Header>
         <Nav></Nav>
         <div className="doc-content">
@@ -114,7 +113,7 @@ const App = () => {
             </div>
           </div>
           <div className="doc-content-document isComponent">
-            <Routes>
+            <Router>
               {routers.map((ru, k) => {
                 const path = ru.component.name?.substring(
                   0,
@@ -170,13 +169,12 @@ const App = () => {
                   ></Route>
                 )
               })}
-            </Routes>
+            </Router>
           </div>
           {/*<div className="markdown-body">*/}
           <DemoPreview className={`${fixed ? 'fixed' : ''}`}></DemoPreview>
           {/*</div>*/}
         </div>
-      </HashRouter>
     </div>
   )
 }
