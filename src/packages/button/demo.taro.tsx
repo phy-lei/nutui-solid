@@ -1,8 +1,6 @@
-import React from 'react'
 import Taro from '@tarojs/taro'
 import { useTranslate } from '@/sites/assets/locale/taro'
 import Header from '@/sites/components/header'
-import { Cell } from '@/packages/nutui.react.taro'
 import Demo1 from './demos/taro/demo1'
 import Demo2 from './demos/taro/demo2'
 import Demo3 from './demos/taro/demo3'
@@ -58,45 +56,45 @@ const ButtonDemo = () => {
       <Header />
       <div className={`demo ${Taro.getEnv() === 'WEB' ? 'web' : ''}`}>
         <h2>设置 open-type </h2>
-        <Cell style={{ flexWrap: 'wrap' }}>
+        <div style={{ flexWrap: 'wrap' }}>
           <Demo1 />
-        </Cell>
+        </div>
         <h2>{translated.ce5c5446}</h2>
-        <Cell style={{ flexWrap: 'wrap' }}>
+        <div style={{ flexWrap: 'wrap' }}>
           <Demo2 />
-        </Cell>
+        </div>
         <h2>{translated.e51e4582}</h2>
-        <Cell style={{ flexWrap: 'wrap' }}>
+        <div style={{ flexWrap: 'wrap' }}>
           <Demo3 />
-        </Cell>
+        </div>
         <h2>{translated['0aaad622']}</h2>
-        <Cell style={{ flexWrap: 'wrap' }}>
+        <div style={{ flexWrap: 'wrap' }}>
           <Demo4 />
-        </Cell>
+        </div>
         <h2>{translated['7db1a8b2']}</h2>
-        <Cell style={{ flexWrap: 'wrap' }}>
+        <div style={{ flexWrap: 'wrap' }}>
           <Demo5 />
-        </Cell>
+        </div>
         <h2>{translated.ce5c5447}</h2>
-        <Cell style={{ flexWrap: 'wrap' }}>
+        <div style={{ flexWrap: 'wrap' }}>
           <Demo6 />
-        </Cell>
+        </div>
         <h2>{translated.a52bef0c}</h2>
-        <Cell style={{ flexWrap: 'wrap' }}>
+        <div style={{ flexWrap: 'wrap' }}>
           <Demo7 />
-        </Cell>
+        </div>
         <h2>{translated['0aaad620']}</h2>
-        <Cell style={{ flexWrap: 'wrap' }}>
+        <div style={{ flexWrap: 'wrap' }}>
           <Demo8 />
-        </Cell>
+        </div>
         <h2>{translated.c9e6df49}</h2>
-        <Cell>
+        <div>
           <Demo9 />
-        </Cell>
+        </div>
         <h2>{translated['781b07fd']}</h2>
-        <Cell style={{ flexWrap: 'wrap' }}>
+        <div style={{ flexWrap: 'wrap' }}>
           <Demo10 />
-        </Cell>
+        </div>
       </div>
     </>
   )
