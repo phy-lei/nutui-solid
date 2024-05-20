@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 import { defineConfig, UserConfig } from 'vite'
-import reactRefresh from '@vitejs/plugin-react'
+import solidPlugin from 'vite-plugin-solid'
 import path from 'path'
 import atImport from 'postcss-import'
 import { readFileSync } from 'node:fs'
@@ -61,7 +61,7 @@ export default defineConfig(async (): Promise<UserConfig> => {
       {
         enforce: 'pre',
         ...mdx.default({
-          providerImportSource: '@mdx-js/react',
+          providerImportSource: 'solid-mdx',
           mdExtensions: [],
           mdxExtensions: ['.md'],
           remarkPlugins: [remarkGfm.default, remarkDirective.default],
@@ -84,7 +84,7 @@ export default defineConfig(async (): Promise<UserConfig> => {
         },
       },
 
-      reactRefresh(),
+      solidPlugin(),
     ],
     test: {
       globals: true,

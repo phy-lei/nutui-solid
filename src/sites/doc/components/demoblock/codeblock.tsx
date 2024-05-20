@@ -1,6 +1,5 @@
-import React, { FunctionComponent, useContext } from 'react'
 import hljs from 'highlight.js'
-import APPContext from '../../context'
+import {useAPPContext} from '../../context'
 import DemoBlock from './demoblock'
 import './demoblock.scss'
 
@@ -9,17 +8,17 @@ const modules = import.meta.glob('@/packages/**/demos/*/*.tsx', {
   eager: true,
 })
 // console.log('modules', modules)
-const CodeBlock: FunctionComponent = (props: { src?: string }) => {
-  const ctx = useContext(APPContext)
+const CodeBlock = (props: { src?: string }) => {
+  const [path] = useAPPContext()
 
-  const originCode = modules[`${ctx.path}/demos/${props.src}`]
+  const originCode = modules[`${path}/demos/${props.src}`]
 
   const highlightedCode = hljs.highlightAuto(originCode, ['jsx']).value
 
   return (
     <DemoBlock text={originCode} scss="">
       <pre>
-        <code dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+        <code innerHTML={highlightedCode} />
       </pre>
     </DemoBlock>
   )

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { createSignal, onMount } from 'solid-js'
 import config from '@/sites/config/env'
 
 export const getLocale = () => {
@@ -14,12 +14,14 @@ export const getLocale = () => {
   return locale
 }
 
-const useLocale = (): [string, any] => {
-  const [locale, setLocale] = useState<string>(getLocale())
+const useLocale = () => {
+  const [locale, setLocale] = createSignal<string>(getLocale())
+
   const handlePopState = () => {
     setLocale(getLocale())
   }
-  useEffect(() => {
+
+  onMount(() => {
     try {
       window.parent.addEventListener('popstate', handlePopState)
     } catch (e) {}
@@ -28,7 +30,8 @@ const useLocale = (): [string, any] => {
         window.parent.removeEventListener('popstate', handlePopState)
       } catch (e) {}
     }
-  }, [])
+  })
+
   return [locale, setLocale]
 }
 

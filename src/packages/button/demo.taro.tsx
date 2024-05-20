@@ -54,37 +54,37 @@ const ButtonDemo = () => {
   return (
     <>
       <Header />
-      <div className={`demo ${Taro.getEnv() === 'WEB' ? 'web' : ''}`}>
+      <div class={`demo ${Taro.getEnv() === 'WEB' ? 'web' : ''}`}>
         <h2>设置 open-type </h2>
-        <div style={{ flexWrap: 'wrap' }}>
+        <div style={{ 'flex-wrap': 'wrap' }}>
           <Demo1 />
         </div>
         <h2>{translated.ce5c5446}</h2>
-        <div style={{ flexWrap: 'wrap' }}>
+        <div style={{ 'flex-wrap': 'wrap' }}>
           <Demo2 />
         </div>
         <h2>{translated.e51e4582}</h2>
-        <div style={{ flexWrap: 'wrap' }}>
+        <div style={{ 'flex-wrap': 'wrap' }}>
           <Demo3 />
         </div>
         <h2>{translated['0aaad622']}</h2>
-        <div style={{ flexWrap: 'wrap' }}>
+        <div style={{ 'flex-wrap': 'wrap' }}>
           <Demo4 />
         </div>
         <h2>{translated['7db1a8b2']}</h2>
-        <div style={{ flexWrap: 'wrap' }}>
+        <div style={{ 'flex-wrap': 'wrap' }}>
           <Demo5 />
         </div>
         <h2>{translated.ce5c5447}</h2>
-        <div style={{ flexWrap: 'wrap' }}>
+        <div style={{ 'flex-wrap': 'wrap' }}>
           <Demo6 />
         </div>
         <h2>{translated.a52bef0c}</h2>
-        <div style={{ flexWrap: 'wrap' }}>
+        <div style={{ 'flex-wrap': 'wrap' }}>
           <Demo7 />
         </div>
         <h2>{translated['0aaad620']}</h2>
-        <div style={{ flexWrap: 'wrap' }}>
+        <div style={{ 'flex-wrap': 'wrap' }}>
           <Demo8 />
         </div>
         <h2>{translated.c9e6df49}</h2>
@@ -92,7 +92,7 @@ const ButtonDemo = () => {
           <Demo9 />
         </div>
         <h2>{translated['781b07fd']}</h2>
-        <div style={{ flexWrap: 'wrap' }}>
+        <div style={{ 'flex-wrap': 'wrap' }}>
           <Demo10 />
         </div>
       </div>

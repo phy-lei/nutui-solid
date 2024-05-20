@@ -1,5 +1,5 @@
-import React from 'react'
-import * as ReactDOM from 'react-dom/client'
+/* @refresh reload */
+import { render } from 'solid-js/web';
 import { isMobile } from '@/sites/assets/util'
 import '@/sites/assets/styles/reset.scss'
 import '@/sites/assets/styles/md-style.scss'
@@ -12,6 +12,5 @@ if (isMobile) {
 const rootElement = document.querySelector('#doc')
 
 if (rootElement != null) {
-  const root = ReactDOM.createRoot(rootElement)
-  root.render(<App />)
+  render(() => <App></App>, rootElement);
 }

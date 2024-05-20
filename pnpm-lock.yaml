@@ -114,7 +114,7 @@ importers:
         version: 3.6.22(@types/react@18.3.2)(postcss@8.4.38)(react@18.3.1)
       '@tarojs/plugin-platform-weapp':
         specifier: 3.6.22
-        version: 3.6.22(@types/react@18.3.2)(postcss@8.4.38)
+        version: 3.6.22(@types/react@18.3.2)(postcss@8.4.38)(react@18.3.1)
       '@tarojs/react':
         specifier: 3.6.22
         version: 3.6.22(react@18.3.1)
@@ -322,6 +322,9 @@ importers:
       solid-js:
         specifier: ^1.8.17
         version: 1.8.17
+      solid-mdx:
+        specifier: ^0.0.7
+        version: 0.0.7(solid-js@1.8.17)(vite@5.2.11)
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@swc/core@1.3.96)(@types/node@20.12.12)(typescript@5.4.5)
@@ -346,6 +349,9 @@ importers:
       vite-plugin-dts:
         specifier: 3.6.4
         version: 3.6.4(@types/node@20.12.12)(rollup@4.17.2)(typescript@5.4.5)(vite@5.2.11)
+      vite-plugin-solid:
+        specifier: ^2.10.2
+        version: 2.10.2(@testing-library/jest-dom@6.4.5)(solid-js@1.8.17)(vite@5.2.11)
       vitest:
         specifier: ^1.4.0
         version: 1.6.0(@types/node@20.12.12)(@vitest/ui@1.6.0)(happy-dom@14.11.0)(sass@1.77.2)
@@ -421,7 +427,7 @@ importers:
         version: 3.6.22(@types/react@18.3.2)(postcss@8.4.38)
       '@tarojs/plugin-platform-weapp':
         specifier: 3.6.22
-        version: 3.6.22(@types/react@18.3.2)(postcss@8.4.38)
+        version: 3.6.22(@types/react@18.3.2)(postcss@8.4.38)(react@18.3.1)
       '@tarojs/react':
         specifier: 3.6.22
         version: 3.6.22(react@18.3.1)
@@ -672,6 +678,13 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/types': 7.24.5
+
+  /@babel/helper-module-imports@7.18.6:
+    resolution: {integrity: sha512-0NFvs3VkuSYbFi1x2Vd6tKrywq+z/cLeYC/RJNFrIX/30Bf5aiGYbtvGXolEktzJH8o5E5KJ3tT+nkxuuZFVlA==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/types': 7.24.5
+    dev: true
 
   /@babel/helper-module-imports@7.24.3:
     resolution: {integrity: sha512-viKb0F9f2s0BCS22QSF308z/+1YWKV/76mwt61NBzS5izMzDPwdq1pTrzf+Li3npBWX9KdQbkeCt1jSAM7lZqg==}
@@ -4296,7 +4309,7 @@ packages:
   /@tarojs/plugin-platform-qq@3.6.22(@types/react@18.3.2)(postcss@8.4.38):
     resolution: {integrity: sha512-XMVvO2k3qEmNgY7lKFvwm2+JPW6m8FqvGp6n27tAlUFYEgnSH7ejyvNauKYDKbv1XZpQHPvbJE2ijq5Zdj5WKQ==}
     dependencies:
-      '@tarojs/plugin-platform-weapp': 3.6.22(@types/react@18.3.2)(postcss@8.4.38)
+      '@tarojs/plugin-platform-weapp': 3.6.22(@types/react@18.3.2)(postcss@8.4.38)(react@18.3.1)
       '@tarojs/service': 3.6.22(@types/react@18.3.2)(postcss@8.4.38)
       '@tarojs/shared': 3.6.22
     transitivePeerDependencies:
@@ -4341,7 +4354,7 @@ packages:
       - supports-color
       - vue
 
-  /@tarojs/plugin-platform-weapp@3.6.22(@types/react@18.3.2)(postcss@8.4.38):
+  /@tarojs/plugin-platform-weapp@3.6.22(@types/react@18.3.2)(postcss@8.4.38)(react@18.3.1):
     resolution: {integrity: sha512-WjVfVYj63o8ATEL+rL0hkJlexDIp8jE3Ijv4BQIceQvHoBg2VkPtOE3ctZcb9FnfcEHkPOIV8+wK5iqkyBQhaw==}
     dependencies:
       '@tarojs/components': 3.6.22(@types/react@18.3.2)(postcss@8.4.38)(react@18.3.1)
@@ -4354,6 +4367,7 @@ packages:
       - '@types/webpack'
       - '@types/webpack-dev-server'
       - postcss
+      - react
       - supports-color
       - vue
 
@@ -4528,7 +4542,7 @@ packages:
       '@tarojs/plugin-platform-qq': 3.6.22(@types/react@18.3.2)(postcss@8.4.38)
       '@tarojs/plugin-platform-swan': 3.6.22(@types/react@18.3.2)(postcss@8.4.38)
       '@tarojs/plugin-platform-tt': 3.6.22(@types/react@18.3.2)(postcss@8.4.38)
-      '@tarojs/plugin-platform-weapp': 3.6.22(@types/react@18.3.2)(postcss@8.4.38)
+      '@tarojs/plugin-platform-weapp': 3.6.22(@types/react@18.3.2)(postcss@8.4.38)(react@18.3.1)
       '@tarojs/runner-utils': 3.6.22
       '@tarojs/runtime': 3.6.22
       '@tarojs/shared': 3.6.22
@@ -6375,6 +6389,19 @@ packages:
       '@types/babel__traverse': 7.20.5
     dev: true
 
+  /babel-plugin-jsx-dom-expressions@0.37.20(@babel/core@7.24.5):
+    resolution: {integrity: sha512-0L3aC5EFyvCgIlEYIqJb4Ym29s1IDI/U5SntZ1ZK054xe0MqBmBi2GLK3f9AOklhdY7kCC3GsHD0bILh6u0Qsg==}
+    peerDependencies:
+      '@babel/core': ^7.20.12
+    dependencies:
+      '@babel/core': 7.24.5
+      '@babel/helper-module-imports': 7.18.6
+      '@babel/plugin-syntax-jsx': 7.24.1(@babel/core@7.24.5)
+      '@babel/types': 7.24.5
+      html-entities: 2.3.3
+      validate-html-nesting: 1.2.2
+    dev: true
+
   /babel-plugin-minify-dead-code-elimination@0.5.2:
     resolution: {integrity: sha512-krq9Lwi0QIzyAlcNBXTL4usqUvevB4BzktdEsb8srcXC1AaYqRJiAQw6vdKdJSaXbz6snBvziGr6ch/aoRCfpA==}
     dependencies:
@@ -6467,6 +6494,15 @@ packages:
       '@babel/core': 7.24.5
       babel-plugin-jest-hoist: 29.6.3
       babel-preset-current-node-syntax: 1.0.1(@babel/core@7.24.5)
+    dev: true
+
+  /babel-preset-solid@1.8.17(@babel/core@7.24.5):
+    resolution: {integrity: sha512-s/FfTZOeds0hYxYqce90Jb+0ycN2lrzC7VP1k1JIn3wBqcaexDKdYi6xjB+hMNkL+Q6HobKbwsriqPloasR9LA==}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    dependencies:
+      '@babel/core': 7.24.5
+      babel-plugin-jsx-dom-expressions: 0.37.20(@babel/core@7.24.5)
     dev: true
 
   /babel-preset-taro@3.6.30(@babel/core@7.24.5):
@@ -10809,6 +10845,10 @@ packages:
       whatwg-encoding: 2.0.0
     dev: true
 
+  /html-entities@2.3.3:
+    resolution: {integrity: sha512-DV5Ln36z34NNTDgnz0EWGBLZENelNAtkiFA4kyNOG2tDI6Mz1uSWiq1wAKdyjnJwyDiDO7Fa2SO1CTxPXL8VxA==}
+    dev: true
+
   /html-entities@2.5.2:
     resolution: {integrity: sha512-K//PSRMQk4FZ78Kyau+mZurHn3FH0Vwr+H36eE0rPbeYkRRi9YxceYPhuN60UwWorxyKHhqoAJl2OFKa4BVtaA==}
 
@@ -11746,6 +11786,11 @@ packages:
 
   /is-what@3.14.1:
     resolution: {integrity: sha512-sNxgpk9793nzSs7bA6JQJGeIuRBQhAaNGG77kzYQgMkrID+lS6SlK07K5LaptscDlSaIgH+GPFzf+d75FVxozA==}
+    dev: true
+
+  /is-what@4.1.16:
+    resolution: {integrity: sha512-ZhMwEosbFJkA0YhFnNDgTM4ZxDRsS6HqTo7qsZM08fehyRYIYa0yHu5R6mgo1n/8MgaPBXiPimPD77baVFYg+A==}
+    engines: {node: '>=12.13'}
     dev: true
 
   /is-windows@1.0.2:
@@ -13532,6 +13577,13 @@ packages:
       trim-newlines: 3.0.1
       type-fest: 0.18.1
       yargs-parser: 20.2.9
+    dev: true
+
+  /merge-anything@5.1.7:
+    resolution: {integrity: sha512-eRtbOb1N5iyH0tkQDAoQ4Ipsp/5qSR79Dzrz8hEPxRX10RWWR/iQXdoKmBSRCThY1Fh5EhISDtpSc93fpxUniQ==}
+    engines: {node: '>=12.13'}
+    dependencies:
+      is-what: 4.1.16
     dev: true
 
   /merge-descriptors@1.0.1:
@@ -17122,6 +17174,27 @@ packages:
       seroval-plugins: 1.0.7(seroval@1.0.7)
     dev: true
 
+  /solid-mdx@0.0.7(solid-js@1.8.17)(vite@5.2.11):
+    resolution: {integrity: sha512-dYKGOu5ZiaX3sfEMZYtfyXm30u33kF+T/pr67CMeyHzENDkWD3st4XEJ12Akp0J0PG9jzyHe5sAAKEXSnEcDEw==}
+    peerDependencies:
+      solid-js: ^1.2.6
+      vite: '*'
+    dependencies:
+      solid-js: 1.8.17
+      vite: 5.2.11(@types/node@20.12.12)(sass@1.77.2)
+    dev: true
+
+  /solid-refresh@0.6.3(solid-js@1.8.17):
+    resolution: {integrity: sha512-F3aPsX6hVw9ttm5LYlth8Q15x6MlI/J3Dn+o3EQyRTtTxidepSTwAYdozt01/YA+7ObcciagGEyXIopGZzQtbA==}
+    peerDependencies:
+      solid-js: ^1.3
+    dependencies:
+      '@babel/generator': 7.24.5
+      '@babel/helper-module-imports': 7.24.3
+      '@babel/types': 7.24.5
+      solid-js: 1.8.17
+    dev: true
+
   /sort-keys-length@1.0.1:
     resolution: {integrity: sha512-GRbEOUqCxemTAk/b32F2xa8wDTs+Z1QHOkbhJDQTvv/6G3ZkbJ+frYWsTcc7cBB3Fu4wy4XlLCuNtJuMn7Gsvw==}
     engines: {node: '>=0.10.0'}
@@ -18514,6 +18587,10 @@ packages:
       convert-source-map: 2.0.0
     dev: true
 
+  /validate-html-nesting@1.2.2:
+    resolution: {integrity: sha512-hGdgQozCsQJMyfK5urgFcWEqsSSrK63Awe0t/IMR0bZ0QMtnuaiHzThW81guu3qx9abLi99NEuiaN6P9gVYsNg==}
+    dev: true
+
   /validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
     dependencies:
@@ -18661,6 +18738,29 @@ packages:
       - supports-color
     dev: true
 
+  /vite-plugin-solid@2.10.2(@testing-library/jest-dom@6.4.5)(solid-js@1.8.17)(vite@5.2.11):
+    resolution: {integrity: sha512-AOEtwMe2baBSXMXdo+BUwECC8IFHcKS6WQV/1NEd+Q7vHPap5fmIhLcAzr+DUJ04/KHx/1UBU0l1/GWP+rMAPQ==}
+    peerDependencies:
+      '@testing-library/jest-dom': ^5.16.6 || ^5.17.0 || ^6.*
+      solid-js: ^1.7.2
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
+    peerDependenciesMeta:
+      '@testing-library/jest-dom':
+        optional: true
+    dependencies:
+      '@babel/core': 7.24.5
+      '@testing-library/jest-dom': 6.4.5(vitest@1.6.0)
+      '@types/babel__core': 7.20.5
+      babel-preset-solid: 1.8.17(@babel/core@7.24.5)
+      merge-anything: 5.1.7
+      solid-js: 1.8.17
+      solid-refresh: 0.6.3(solid-js@1.8.17)
+      vite: 5.2.11(@types/node@20.12.12)(sass@1.77.2)
+      vitefu: 0.2.5(vite@5.2.11)
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /vite@5.2.11(@types/node@20.12.12)(sass@1.77.2):
     resolution: {integrity: sha512-HndV31LWW05i1BLPMUCE1B9E9GFbOu1MbenhS58FuK6owSO5qHm7GiCotrNY1YE5rMeQSFBGmT5ZaLEjFizgiQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -18696,6 +18796,17 @@ packages:
       sass: 1.77.2
     optionalDependencies:
       fsevents: 2.3.3
+    dev: true
+
+  /vitefu@0.2.5(vite@5.2.11):
+    resolution: {integrity: sha512-SgHtMLoqaeeGnd2evZ849ZbACbnwQCIwRH57t18FxcXoZop0uQu0uzlIhJBlF/eWVzuce0sHeqPcDo+evVcg8Q==}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
+    peerDependenciesMeta:
+      vite:
+        optional: true
+    dependencies:
+      vite: 5.2.11(@types/node@20.12.12)(sass@1.77.2)
     dev: true
 
   /vitest-canvas-mock@0.3.3(vitest@1.6.0):

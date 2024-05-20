@@ -1,13 +1,14 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import { createSignal, onMount, onCleanup, For, Show } from 'solid-js'
 import { nav } from '@/config.json'
-import { NavLink } from 'react-router-dom'
+import { A } from "@solidjs/router";
 import './nav.scss'
 import useLocale from '@/sites/assets/locale/uselocale'
 
 const Nav = () => {
-  const [cNav] = useState<any>(nav)
+  const [cNav] = createSignal<any>(nav)
   const [lang] = useLocale()
-  const [fixed, setFixed] = useState(false)
+  const [fixed, setFixed] = createSignal(false)
+
   const scrollNav = () => {
     let top = document.documentElement.scrollTop
     if (top > 64) {
@@ -16,57 +17,66 @@ const Nav = () => {
       setFixed(false)
     }
   }
-  useEffect(() => {
-    document.addEventListener('scroll', scrollNav)
-  }, [])
-  return (
-    <div className={`doc-nav ${fixed ? 'fixed' : ''}`}>
-      <ol>
-        {cNav.map((cn: any) => {
-          return (
-            <Fragment key={cn.enName}>
-              {cn.enName === 'dentry1' ? null : (
-                <li>{lang === 'zh-CN' ? cn.name : cn.enName}</li>
-              )}
 
-              <ul>
-                {cn.packages.map((cp: any) => {
-                  if (!cp.show) return null
-                  return (
-                    <NavLink
-                      key={Math.random()}
-                      className={({ isActive, isPending }) =>
-                        isPending ? '' : isActive ? 'selected' : ''
-                      }
-                      to={`${lang ? `/${lang}` : ''}/component/${cp.name}`}
-                    >
-                      <li>
-                        {cp.name}&nbsp;&nbsp;
-                        <b>{lang === 'zh-CN' && cp.cName}</b>
-                        {cp.version !== '2.0.0' ? (
-                          <b
-                            style={{
-                              background: 'rgb(250, 205, 205)',
-                              padding: '0px 5px',
-                              borderRadius: '5px',
-                              color: 'rgb(255, 255, 255)',
-                              transform: 'scale(0.8)',
-                              height: '20px',
-                              lineHeight: '20px',
-                              display: 'inline-block',
-                            }}
-                          >
-                            🛠
-                          </b>
-                        ) : null}
-                      </li>
-                    </NavLink>
-                  )
-                })}
-              </ul>
-            </Fragment>
-          )
-        })}
+  onMount(() => {
+    document.addEventListener('scroll', scrollNav)
+    onCleanup(() => {
+      document.removeEventListener('scroll', scrollNav)
+    })
+  })
+
+  return (
+    <div class={`doc-nav ${fixed() ? 'fixed' : ''}`}>
+      <ol>
+        <For each={cNav()}>
+          {(cn) =>
+            <>
+              <Show when={cn.enName !== 'dentry1'}>
+                <li>{lang() === 'zh-CN' ? cn.name : cn.enName}</li>
+              </Show>
+
+               <ul>
+                <For each={cn.packages}>
+                  {
+                    (cp) => {
+                      if (!cp.show) return null
+                      return (
+                        <a
+                          // class={({ isActive, isPending }) =>
+                          //   isPending ? '' : isActive ? 'selected' : ''
+                          // }
+                          href={`${lang() ? `/${lang()}` : ''}/component/${cp.name}`}
+                        >
+                          <li>
+                            {cp.name}&nbsp;&nbsp;
+                            <b>{lang() === 'zh-CN' && cp.cName}</b>
+                            {cp.version !== '2.0.0' ? (
+                              <b
+                                style={{
+                                  background: 'rgb(250, 205, 205)',
+                                  padding: '0px 5px',
+                                  'border-radius': '5px',
+                                  color: 'rgb(255, 255, 255)',
+                                  transform: 'scale(0.8)',
+                                  height: '20px',
+                                  'line-height': '20px',
+                                  display: 'inline-block',
+                                }}
+                              >
+                                🛠
+                              </b>
+                            ) : null}
+                          </li>
+                        </a>
+                      )
+                    }
+                  }
+                </For>
+               </ul>
+             </>
+            }
+        </For>
+
       </ol>
     </div>
   )

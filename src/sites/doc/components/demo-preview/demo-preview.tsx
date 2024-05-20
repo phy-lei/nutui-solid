@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import { createEffect, createSignal } from 'solid-js'
+import { useLocation } from '@solidjs/router'
 import './demo-preview.scss'
-import { useLocation } from 'react-router-dom'
 
 const DemoPreview = (props: any) => {
   const location = useLocation()
-  const [URL, setURL] = useState(location.pathname)
+  const [URL, setURL] = createSignal(location.pathname)
 
-  useEffect(() => {
+  createEffect(() => {
     setURL(location.pathname)
-  }, [location])
+  })
 
   return (
-    <div className={`doc-demo-preview ${props.className}`}>
-      <iframe src={`/react/demo.html#${URL}`} frameBorder="0"></iframe>
+    <div class={`doc-demo-preview ${props.class}`}>
+      <iframe src={`/react/demo.html#${URL()}`} frameBorder="0"></iframe>
     </div>
   )
 }
