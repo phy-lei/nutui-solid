@@ -1,13 +1,11 @@
 import { createEffect, createSignal } from 'solid-js'
-import { useLocation } from '@solidjs/router'
 import './demo-preview.scss'
 
 const DemoPreview = (props: any) => {
-  const location = useLocation()
-  const [URL, setURL] = createSignal(location.pathname)
+  const [URL, setURL] = createSignal(window.location.pathname)
 
   createEffect(() => {
-    setURL(location.pathname)
+    setURL(window.location.pathname)
   })
 
   return (

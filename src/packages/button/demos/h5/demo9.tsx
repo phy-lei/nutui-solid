@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button } from '@nutui/nutui-react'
 
 const App = () => {
@@ -7,7 +6,7 @@ const App = () => {
       <Button
         color="blue"
         style={{
-          margin: 8,
+          margin: '8px',
         }}
       >
         单色按钮
@@ -16,7 +15,7 @@ const App = () => {
         fill="outline"
         color="#7232dd"
         style={{
-          margin: 8,
+          margin: '8px',
         }}
       >
         单色按钮
@@ -24,7 +23,7 @@ const App = () => {
       <Button
         color="rgba(10,101,208,0.75)"
         style={{
-          margin: 8,
+          margin: '8px',
         }}
       >
         单色按钮
@@ -33,7 +32,7 @@ const App = () => {
         type="primary"
         color="linear-gradient(to right, #ff6034, #ee0a24)"
         style={{
-          margin: 8,
+          margin: '8px',
         }}
       >
         渐变按钮

@@ -15,6 +15,8 @@ const CodeBlock = (props: { src?: string }) => {
 
   const highlightedCode = hljs.highlightAuto(originCode, ['jsx']).value
 
+  console.log('%c [ highlightedCode ]', 'font-size:13px; background:pink; color:#bf2c9f;', highlightedCode);
+
   return (
     <DemoBlock text={originCode} scss="">
       <pre>

@@ -3,7 +3,6 @@ import { nav } from '@/config.json'
 // @ts-ignore
 import { version } from '/package.json'
 import './header.scss'
-import { useNavigate, useLocation } from '@solidjs/router'
 
 const langs = [
   { name: '中文', locale: 'zh-CN' },
@@ -13,12 +12,10 @@ const langs = [
 ]
 
 const Header = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
   const [currLang, setCurrLang] = createSignal({})
 
   const toHome = () => {
-    navigate('/')
+    window.location.href = '/'
   }
 
   onMount(() => {
@@ -30,7 +27,7 @@ const Header = () => {
 
   createEffect(() => {
     const lang = langs.filter(
-      (l) => location.pathname.indexOf(l.locale) > -1
+      (l) => window.location.pathname.indexOf(l.locale) > -1
     )[0]
     setCurrLang(lang)
   })

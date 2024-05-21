@@ -1,4 +1,4 @@
-import { createSignal, onMount } from 'solid-js'
+import { createSignal, onMount, Accessor, Setter } from 'solid-js'
 import config from '@/sites/config/env'
 
 export const getLocale = () => {
@@ -14,7 +14,7 @@ export const getLocale = () => {
   return locale
 }
 
-const useLocale = () => {
+const useLocale = (): [Accessor<string>, Setter<string>] => {
   const [locale, setLocale] = createSignal<string>(getLocale())
 
   const handlePopState = () => {

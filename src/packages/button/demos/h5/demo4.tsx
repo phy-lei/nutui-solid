@@ -1,9 +1,8 @@
-import React from 'react'
-import { Star, Plus } from '@nutui/icons-react'
+import { Star, Plus } from './demo3'
 import { Button } from '@nutui/nutui-react'
 
 const Demo4 = () => {
-  const marginStyle = { margin: 8 }
+  const marginStyle = { margin: '8px' }
   return (
     <>
       <Button
@@ -51,8 +50,8 @@ const Demo4 = () => {
         icon={<Star />}
         rightIcon={<Star />}
         style={{
-          margin: 8,
-          backgroundColor: `var(--nutui-gray-3)`,
+          margin: '8px',
+          'background-color': `var(--nutui-gray-3)`,
           color: `var(--nutui-gray-5)`,
         }}
       >
@@ -65,8 +64,8 @@ const Demo4 = () => {
         icon={<Star />}
         rightIcon={<Star />}
         style={{
-          margin: 8,
-          backgroundColor: `var(--nutui-gray-1)`,
+          margin: '8px',
+          'background-color': `var(--nutui-gray-1)`,
           color: `var(--nutui-gray-5)`,
         }}
       >

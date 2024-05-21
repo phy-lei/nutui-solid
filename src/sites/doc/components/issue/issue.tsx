@@ -1,15 +1,13 @@
 import { createEffect, createSignal } from 'solid-js'
-import { useLocation } from '@solidjs/router'
 import { nav } from '@/config.json'
 import './issue.scss'
 
 export function Issue() {
-  const location = useLocation()
   const [componentName, setComponentName] = createSignal({ name: '', cName: '' })
 
   createEffect(() => {
     const getComponentName = () => {
-      const s = location.hash.split('/')
+      const s = window.location.hash.split('/')
       const cname = s[s.length - 1].toLowerCase()
       const component: any = {}
       nav.forEach((item: any) => {

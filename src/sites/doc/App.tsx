@@ -1,6 +1,15 @@
-import { createSignal, createMemo, createEffect, For, onMount, onCleanup } from 'solid-js'
-import { Router, Route, useLocation } from '@solidjs/router'
-import { MDXProvider } from "solid-mdx";
+import {
+  createSignal,
+  createMemo,
+  createEffect,
+  For,
+  onMount,
+  onCleanup,
+  Show,
+  Suspense,
+} from 'solid-js'
+import { Router, Route } from '@solidjs/router'
+import { MDXProvider } from 'solid-mdx'
 import './App.scss'
 import { nav } from '@/config.json'
 import { APPProvider } from './context'
@@ -11,12 +20,13 @@ import Issue from '@/sites/doc/components/issue'
 import routers from './router'
 import CodeBlock from './components/demoblock/codeblock'
 
-
 const Title = () => {
-  const location = useLocation()
-  const [componentName, setComponentName] = createSignal({ name: '', cName: '' })
+  const [componentName, setComponentName] = createSignal({
+    name: '',
+    cName: '',
+  })
 
-  const s = createMemo(() => location.hash.split('/'))
+  const s = createMemo(() => window.location.hash.split('/'))
 
   createEffect(() => {
     const getComponentName = () => {
@@ -48,11 +58,9 @@ const components = {
 }
 
 const App = () => {
-
   const [fixed, setFixed] = createSignal(false)
   const [hidden, setHidden] = createSignal(false)
   const [docname, setDocName] = createSignal('react')
-
 
   const taros = createMemo(() => {
     const docs = {} as any
@@ -70,7 +78,6 @@ const App = () => {
     })
     return { docs, support }
   })
-
 
   const scrollTitle = () => {
     let top = document.documentElement.scrollTop
@@ -104,9 +111,8 @@ const App = () => {
     })
   })
 
-
   return (
-    <Router>
+    <>
       <Header></Header>
       <Nav></Nav>
       <div class="doc-content">
@@ -121,66 +127,83 @@ const App = () => {
           </div>
         </div>
         <div class="doc-content-document isComponent">
-          <For each={routers}>
-            {(ru) => {
+          <Router>
+            <For each={routers}>
+              {(ru) => {
                 const path = ru.component.name?.substring(
-                0,
-                ru.component.name.lastIndexOf('/')
-              )
+                  0,
+                  ru.component.name.lastIndexOf('/')
+                )
+                // console.log(
+                //   '%c [ ===>123 ]',
+                //   'font-size:13px; background:pink; color:#bf2c9f;',
+                //   ru.component,
+                //   path,
+                //   ru.path
+                // )
 
-              return (
-                <Route
-                  path={ru.path}
-                  component={() =>
-                    <APPProvider value={ path }>
-                      <MDXProvider components={components}>
-                        {taros().docs[ru.name.replace('-taro', '')] ? (
-                          <div class="doc-content-tabs ">
-                            <div
-                              class={`tab-item ${
-                                docname() === 'react' ? 'cur' : ''
-                              }`}
-                              onClick={() => switchDoc('react')}
-                            >
-                              React
-                            </div>
-                            <div
-                              class={`tab-item ${
-                                docname() === 'taro' ? 'cur' : ''
-                              }`}
-                              onClick={() => switchDoc('taro')}
-                            >
-                              Taro
-                            </div>
-                          </div>
-                        ) : (
-                          <div
-                            class="doc-content-tabs single"
-                            style={{
-                              display: `${
-                                taros().support[ru.name.replace('-taro', '')]
-                                  ? 'inherit'
-                                  : 'none'
-                              }`,
-                            }}
+                return (
+                  <Route
+                    path={ru.path}
+                    component={() => (
+                      <APPProvider value={path}>
+                        <MDXProvider components={components}>
+                          <Show
+                            when={taros().docs[ru.name.replace('-taro', '')]}
+                            fallback={
+                              <div
+                                class="doc-content-tabs single"
+                                style={{
+                                  display: `${
+                                    taros().support[
+                                      ru.name.replace('-taro', '')
+                                    ]
+                                      ? 'inherit'
+                                      : 'none'
+                                  }`,
+                                }}
+                              >
+                                <div class="tab-item cur">React / Taro</div>
+                              </div>
+                            }
                           >
-                            <div class="tab-item cur">React / Taro</div>
-                          </div>
-                        )}
-                        <ru.component />
-                      </MDXProvider>
-                    </APPProvider>
-                  }
-                ></Route>
-              )
-            }}
-          </For>
+                            <div class="doc-content-tabs ">
+                              <div
+                                class={`tab-item ${
+                                  docname() === 'react' ? 'cur' : ''
+                                }`}
+                                onClick={() => switchDoc('react')}
+                              >
+                                React
+                              </div>
+                              <div
+                                class={`tab-item ${
+                                  docname() === 'taro' ? 'cur' : ''
+                                }`}
+                                onClick={() => switchDoc('taro')}
+                              >
+                                Taro
+                              </div>
+                            </div>
+                          </Show>
+                          {/* <Suspense fallback={<div>fetching user data</div>}>
+                            <ru.component></ru.component>
+                          </Suspense> */}
+                          <ru.component></ru.component>
+                        </MDXProvider>
+                      </APPProvider>
+                    )}
+                  ></Route>
+                )
+              }}
+            </For>
+          </Router>
         </div>
         {/*<div class="markdown-body">*/}
         <DemoPreview class={`${fixed() ? 'fixed' : ''}`}></DemoPreview>
         {/*</div>*/}
       </div>
-    </Router>
+    </>
   )
 }
 export default App

@@ -4,6 +4,7 @@ import solidPlugin from 'vite-plugin-solid'
 import path from 'path'
 import atImport from 'postcss-import'
 import { readFileSync } from 'node:fs'
+import vinxiMdx from '@vinxi/plugin-mdx'
 
 const projectID = process.env.VITE_APP_PROJECT_ID || ''
 
@@ -16,14 +17,20 @@ if (projectID) {
 
 // https://vitejs.dev/config/
 export default defineConfig(async (): Promise<UserConfig> => {
-  const mdx = await import('@mdx-js/rollup')
   const remarkGfm = await import('remark-gfm')
   const remarkDirective = await import('remark-directive')
+  const rehypeRaw = (await import('rehype-raw')).default
+  const rehypeSlug = (await import('rehype-slug')).default
+  const rehypeAutoLinkHeadings = (await import('rehype-autolink-headings'))
+    .default
+  const { nodeTypes } = await import('@mdx-js/mdx')
+
   return {
     server: {
       host: '0.0.0.0',
     },
     base: '/react/',
+    assetsInclude: ['**/*.md', '**/*.mdx'],
     resolve: {
       alias: [
         {
@@ -60,10 +67,31 @@ export default defineConfig(async (): Promise<UserConfig> => {
     plugins: [
       {
         enforce: 'pre',
-        ...mdx.default({
+        ...vinxiMdx.withImports({})({
+          define: {
+            'import.meta.env': `'import.meta.env'`,
+          },
+          jsx: true,
+          jsxImportSource: 'solid-js',
           providerImportSource: 'solid-mdx',
-          mdExtensions: [],
-          mdxExtensions: ['.md'],
+          // rehypePlugins: [
+          //   [
+          //     rehypeRaw,
+          //     {
+          //       passThrough: nodeTypes,
+          //     },
+          //   ],
+          //   [rehypeSlug],
+          //   [
+          //     rehypeAutoLinkHeadings,
+          //     {
+          //       behavior: 'wrap',
+          //       properties: {
+          //         className: 'heading',
+          //       },
+          //     },
+          //   ],
+          // ],
           remarkPlugins: [remarkGfm.default, remarkDirective.default],
         }),
       },
